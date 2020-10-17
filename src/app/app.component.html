@@ -1,0 +1,12 @@
+<h1>Angular ToDo Router App</h1>
+<nav>
+  <ul>
+    <!-- This is switching pages via the front end -->
+    <!-- Cleaner way would be to make a component for the nav bar, 
+      have a header and footer above and below the router-outlet -->
+    <li><a routerLink="/login" routerLinkActive>Login Page</a></li>
+    <li><a routerLink="/home" routerLinkActive>Home Page</a></li>
+  </ul>
+</nav>
+
+<router-outlet></router-outlet>
