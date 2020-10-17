@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,7 +26,7 @@ export class LoginComponent implements OnInit {
   });
 
   //Importing and initializing formbuilder object in constructor
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private route: Router) { }
 
   ngOnInit(): void {
   }
@@ -32,6 +34,14 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     //Prints json array to console of the current loginForm object
     console.warn(this.loginForm.value)
+
+    if(this.loginForm.value.email == "test@test.com" && this.loginForm.value.password == "pass"){
+      //If login is valid, then navigate to the home page, using Router import
+      this.route.navigate(["/home"])
+    }
+    else{
+      alert("Wrong email and password");
+    }
   }
 
 }
