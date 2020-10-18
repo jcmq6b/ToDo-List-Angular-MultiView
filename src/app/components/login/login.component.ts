@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     //Prints json array to console of the current loginForm object
-    console.warn(this.loginForm.value)
+    //console.warn(this.loginForm.value)
 
     if(this.loginForm.value.email == "test@test.com" && this.loginForm.value.password == "pass"){
       //If login is valid, then navigate to the home page, using Router import
