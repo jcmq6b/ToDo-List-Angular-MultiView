@@ -1,11 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { trigger, state, style, animate, transition, keyframes } from '@angular/animations'; 
 
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.css']
+  styleUrls: ['./homepage.component.css'],
+  animations: [
+      trigger('moveInLeft', [
+        transition('void=> *', [
+          style({ transform: 'translateX(300px)' }),
+          animate(
+            200,
+            keyframes([
+              style({ transform: 'translateX(300px)' }),
+              style({ transform: 'translateX(0)' }),
+            ])
+          ),
+        ]),
+        transition('*=>void', [
+          style({ transform: 'translateX(0px)' }),
+          animate(
+            100,
+            keyframes([
+              style({ transform: 'translateX(0px)' }),
+              style({ transform: 'translateX(300px)' }),
+            ])
+          ),
+        ]),
+      ]),
+    ],
 })
 export class HomepageComponent implements OnInit {
 
@@ -20,11 +45,14 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addTodo(value) {
+  addTodo() {
+    //Key in json object is todo
+    let value = this.todoForm.value.todo;
+
     if (value != '') {
       this.todoArray.push(value);
       console.log(this.todoArray);
-      this.todoForm.resetForm();
+      this.todoForm.reset();
     } else {
       alert('Todo Field Required!!');
     }
@@ -37,11 +65,13 @@ export class HomepageComponent implements OnInit {
       }
     }
   }
-    todoSubmit(form: any) {
-      if (form != '') {
-        console.log(form);
-        this.todoArray.push(form.todo);
-        this.todoForm.resetForm();
+
+    todoSubmit() {
+      let value = this.todoForm.value.todo;
+      if (value != '') {
+        console.log(value);
+        this.todoArray.push(value);
+        this.todoForm.reset();
       } else {
         alert('Todo Field Reqired!!');
       }
